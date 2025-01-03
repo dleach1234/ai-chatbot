@@ -14,5 +14,6 @@ export const config = {
     '/pricing',
     '/api/stripe/:path*',
     '/dashboard',
+    '/dashboard/billing',
   ],
 };

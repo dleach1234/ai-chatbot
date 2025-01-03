@@ -45,7 +45,7 @@ export async function POST(req: Request) {
                     quantity: 1,
                 },
             ],
-            success_url: `${DOMAIN}/dashboard?success=true`,
+            success_url: `${DOMAIN}/dashboard/billing?success=true`,
             cancel_url: `${DOMAIN}/pricing?canceled=true`,
             metadata: {
                 userId: session.user.id,
