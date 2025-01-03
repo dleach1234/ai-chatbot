@@ -3,7 +3,7 @@
 import type { User } from 'next-auth';
 import { useRouter } from 'next/navigation';
 
-import { PlusIcon } from '@/components/icons';
+import { PlusIcon, SparklesIcon } from '@/components/icons';
 import { SidebarHistory } from '@/components/sidebar-history';
 import { SidebarUserNav } from '@/components/sidebar-user-nav';
 import { Button } from '@/components/ui/button';
@@ -61,7 +61,19 @@ export function AppSidebar({ user }: { user: User | undefined }) {
       <SidebarContent>
         <SidebarHistory user={user} />
       </SidebarContent>
-      <SidebarFooter>{user && <SidebarUserNav user={user} />}</SidebarFooter>
+      <SidebarFooter>
+        <div className="flex flex-col gap-2">
+          <Link
+            href="/pricing"
+            className="flex items-center gap-2 px-2 py-1.5 text-sm hover:bg-muted rounded-md"
+            onClick={() => setOpenMobile(false)}
+          >
+            <SparklesIcon className="h-4 w-4" />
+            Upgrade to Pro
+          </Link>
+          {user && <SidebarUserNav user={user} />}
+        </div>
+      </SidebarFooter>
     </Sidebar>
   );
 }

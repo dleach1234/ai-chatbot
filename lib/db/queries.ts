@@ -328,3 +328,64 @@ export async function updateChatVisiblityById({
     throw error;
   }
 }
+
+export async function updateUserSubscription({
+  userId,
+  stripeCustomerId,
+  stripeSubscriptionId,
+  stripePriceId,
+  stripeCurrentPeriodEnd,
+}: {
+  userId: string;
+  stripeCustomerId: string;
+  stripeSubscriptionId: string;
+  stripePriceId: string;
+  stripeCurrentPeriodEnd: Date;
+}) {
+  try {
+    return await db
+      .update(user)
+      .set({
+        stripeCustomerId,
+        stripeSubscriptionId,
+        stripePriceId,
+        stripeCurrentPeriodEnd,
+      })
+      .where(eq(user.id, userId));
+  } catch (error) {
+    console.error('Failed to update user subscription in database');
+    throw error;
+  }
+}
+
+export async function getUserSubscription(userId: string) {
+  try {
+    const users = await db
+      .select({
+        stripeCustomerId: user.stripeCustomerId,
+        stripeSubscriptionId: user.stripeSubscriptionId,
+        stripePriceId: user.stripePriceId,
+        stripeCurrentPeriodEnd: user.stripeCurrentPeriodEnd,
+      })
+      .from(user)
+      .where(eq(user.id, userId));
+
+    return users[0];
+  } catch (error) {
+    console.error('Failed to get user subscription from database');
+    throw error;
+  }
+}
+
+export async function getUserById(userId: string) {
+  try {
+    const users = await db
+      .select()
+      .from(user)
+      .where(eq(user.id, userId));
+    return users[0];
+  } catch (error) {
+    console.error('Failed to get user by id from database');
+    throw error;
+  }
+}

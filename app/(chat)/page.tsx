@@ -4,6 +4,8 @@ import { Chat } from '@/components/chat';
 import { DEFAULT_MODEL_NAME, models } from '@/lib/ai/models';
 import { generateUUID } from '@/lib/utils';
 import { DataStreamHandler } from '@/components/data-stream-handler';
+import { checkSubscription } from '@/lib/subscription';
+import { auth } from '@/app/(auth)/auth';
 
 export default async function Page() {
   const id = generateUUID();
@@ -14,6 +16,9 @@ export default async function Page() {
   const selectedModelId =
     models.find((model) => model.id === modelIdFromCookie)?.id ||
     DEFAULT_MODEL_NAME;
+
+  const session = await auth();
+  const isPro = await checkSubscription(session?.user?.id);
 
   return (
     <>
