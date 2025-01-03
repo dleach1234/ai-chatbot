@@ -29,6 +29,7 @@ export default async function Page() {
         selectedModelId={selectedModelId}
         selectedVisibilityType="private"
         isReadonly={false}
+        user={session?.user}
       />
       <DataStreamHandler id={id} />
     </>

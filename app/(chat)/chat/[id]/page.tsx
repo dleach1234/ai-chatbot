@@ -47,6 +47,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
         selectedModelId={selectedModelId}
         selectedVisibilityType={chat.visibility}
         isReadonly={session?.user?.id !== chat.userId}
+        user={session?.user}
       />
       <DataStreamHandler id={id} />
     </>
