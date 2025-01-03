@@ -13,9 +13,10 @@ interface PricingDialogProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
     userId?: string;
+    stripePriceId?: string | null;
 }
 
-export function PricingDialog({ open, onOpenChange, userId }: PricingDialogProps) {
+export function PricingDialog({ open, onOpenChange, userId, stripePriceId }: PricingDialogProps) {
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="max-w-4xl">
@@ -25,7 +26,7 @@ export function PricingDialog({ open, onOpenChange, userId }: PricingDialogProps
                         Choose the right plan for you
                     </DialogDescription>
                 </DialogHeader>
-                <PricingCards userId={userId} />
+                <PricingCards userId={userId} stripePriceId={stripePriceId} />
             </DialogContent>
         </Dialog>
     );
