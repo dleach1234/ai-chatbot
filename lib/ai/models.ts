@@ -38,6 +38,18 @@ export const models: Array<Model> = [
     apiIdentifier: 'claude-3-5-haiku-latest',
     description: 'Anthropic\'s fastest model',
   },
+  {
+    id: 'gemini-1.5-flash',
+    label: 'Gemini 1.5 Flash',
+    apiIdentifier: 'gemini-1.5-flash-latest',
+    description: 'Google\'s fastest experimental model',
+  },
+  {
+    id: 'gemini-1.0-pro',
+    label: 'Gemini 1.0 Pro',
+    apiIdentifier: 'gemini-1.5-pro-latest',
+    description: 'Google\'s advanced model for complex tasks',
+  },
 ] as const;
 
 export const DEFAULT_MODEL_NAME: string = 'gpt-4o-mini';

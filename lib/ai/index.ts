@@ -1,14 +1,21 @@
 import { anthropic } from '@ai-sdk/anthropic';
 import { openai } from '@ai-sdk/openai';
+import { google } from '@ai-sdk/google';
 import { experimental_wrapLanguageModel as wrapLanguageModel } from 'ai';
 
 import { customMiddleware } from './custom-middleware';
 
 export const customModel = (apiIdentifier: string) => {
-  // Check if the model ID starts with 'claude'
   if (apiIdentifier.startsWith('claude')) {
     return wrapLanguageModel({
       model: anthropic(apiIdentifier),
+      middleware: customMiddleware,
+    });
+  }
+
+  if (apiIdentifier.startsWith('gemini')) {
+    return wrapLanguageModel({
+      model: google(apiIdentifier),
       middleware: customMiddleware,
     });
   }

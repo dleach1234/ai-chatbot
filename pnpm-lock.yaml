@@ -8,6 +8,9 @@ dependencies:
   '@ai-sdk/anthropic':
     specifier: ^1.0.6
     version: 1.0.6(zod@3.24.1)
+  '@ai-sdk/google':
+    specifier: ^1.0.12
+    version: 1.0.12(zod@3.24.1)
   '@ai-sdk/openai':
     specifier: 1.0.6
     version: 1.0.6(zod@3.24.1)
@@ -26,6 +29,9 @@ dependencies:
   '@codemirror/view':
     specifier: ^6.35.3
     version: 6.36.1
+  '@google/generative-ai':
+    specifier: ^0.21.0
+    version: 0.21.0
   '@radix-ui/react-alert-dialog':
     specifier: ^1.1.2
     version: 1.1.4(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@19.0.0-rc-45804af1-20241021)(react@19.0.0-rc-45804af1-20241021)
@@ -249,6 +255,17 @@ packages:
 
   /@ai-sdk/anthropic@1.0.6(zod@3.24.1):
     resolution: {integrity: sha512-/9f/CJfR+9rXRV55KSBExMCGeVV7QE5SlagLniak4j74t4/Zg1Aoa69AHftJ78rz/S5srvAB9YtTu52NY+E0mg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.0.0
+    dependencies:
+      '@ai-sdk/provider': 1.0.3
+      '@ai-sdk/provider-utils': 2.0.5(zod@3.24.1)
+      zod: 3.24.1
+    dev: false
+
+  /@ai-sdk/google@1.0.12(zod@3.24.1):
+    resolution: {integrity: sha512-vZUK8X997tKmycwCa9d26PoGtIyNEILykYb6JscMoA/pfr5Nss8Ox1JtSGn+PRkehpJhclOaLNWV1JQAjp73aA==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
@@ -1295,6 +1312,11 @@ packages:
 
   /@floating-ui/utils@0.2.8:
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
+    dev: false
+
+  /@google/generative-ai@0.21.0:
+    resolution: {integrity: sha512-7XhUbtnlkSEZK15kN3t+tzIMxsbKm/dSkKBFalj+20NvPKe1kBY7mR2P7vuijEn+f06z5+A8bVGKO0v39cr6Wg==}
+    engines: {node: '>=18.0.0'}
     dev: false
 
   /@humanwhocodes/config-array@0.13.0:

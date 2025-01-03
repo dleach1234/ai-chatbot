@@ -106,6 +106,16 @@ export async function POST(request: Request) {
         messages: coreMessages,
         maxSteps: 5,
         experimental_activeTools: allTools,
+        experimental_providerMetadata: {
+          google: {
+            safetySettings: [
+              {
+                category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
+                threshold: 'BLOCK_MEDIUM_AND_ABOVE'
+              }
+            ]
+          }
+        },
         tools: {
           getWeather: {
             description: 'Get the current weather at a location',
@@ -263,6 +273,14 @@ export async function POST(request: Request) {
                         content: currentContent,
                       },
                     },
+                    google: {
+                      safetySettings: [
+                        {
+                          category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
+                          threshold: 'BLOCK_MEDIUM_AND_ABOVE'
+                        }
+                      ]
+                    }
                   },
                 });
 
