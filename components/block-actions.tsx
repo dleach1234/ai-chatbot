@@ -1,5 +1,5 @@
 import { cn, generateUUID } from '@/lib/utils';
-import { ClockRewind, CopyIcon, PlayIcon, RedoIcon, UndoIcon } from './icons';
+import { ClockRewindIcon, CopyIcon, PlayIcon, RedoIcon, UndoIcon } from './icons';
 import { Button } from './ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 import { useCopyToClipboard } from 'usehooks-ts';
@@ -149,7 +149,7 @@ function PureBlockActions({
                 block.status === 'streaming' || currentVersionIndex === 0
               }
             >
-              <ClockRewind size={18} />
+              <ClockRewindIcon size={18} />
             </Button>
           </TooltipTrigger>
           <TooltipContent>View changes</TooltipContent>
