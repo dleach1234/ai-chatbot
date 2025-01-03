@@ -17,13 +17,6 @@ import {
 } from './ui/tooltip';
 import { memo } from 'react';
 import equal from 'fast-deep-equal';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from './ui/dropdown-menu';
-import { models } from '@/lib/ai/models';
 
 export function PureMessageActions({
   chatId,
@@ -64,39 +57,20 @@ export function PureMessageActions({
           <TooltipContent>Copy</TooltipContent>
         </Tooltip>
 
-        <DropdownMenu open={open} onOpenChange={setOpen}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  className="py-1 px-2 h-fit text-muted-foreground"
-                  variant="outline"
-                >
-                  <ClockRewindIcon />
-                </Button>
-              </DropdownMenuTrigger>
-            </TooltipTrigger>
-            <TooltipContent>Regenerate Response</TooltipContent>
-          </Tooltip>
-
-          <DropdownMenuContent align="end" className="min-w-[200px]">
-            {models.map((model) => (
-              <DropdownMenuItem
-                key={model.id}
-                className="gap-4 group/item flex flex-row justify-between items-center"
-              >
-                <div className="flex flex-col gap-1 items-start">
-                  {model.label}
-                  {model.description && (
-                    <div className="text-xs text-muted-foreground">
-                      {model.description}
-                    </div>
-                  )}
-                </div>
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              className="py-1 px-2 h-fit text-muted-foreground"
+              variant="outline"
+              onClick={async () => {
+                toast.success('Regenerating response...');
+              }}
+            >
+              <ClockRewindIcon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>Regenerate Response</TooltipContent>
+        </Tooltip>
 
         <Tooltip>
           <TooltipTrigger asChild>
