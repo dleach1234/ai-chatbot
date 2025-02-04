@@ -8,25 +8,26 @@ import type { User } from 'next-auth';
 
 import { ChatHeader } from '@/components/chat-header';
 import type { Vote } from '@/lib/db/schema';
-import { fetcher } from '@/lib/utils';
+import { fetcher, generateUUID } from '@/lib/utils';
 
 import { Block } from './block';
 import { MultimodalInput } from './multimodal-input';
 import { Messages } from './messages';
 import { VisibilityType } from './visibility-selector';
 import { useBlockSelector } from '@/hooks/use-block';
+import { toast } from 'sonner';
 
 export function Chat({
   id,
   initialMessages,
-  selectedModelId,
+  selectedChatModel,
   selectedVisibilityType,
   isReadonly,
   user,
 }: {
   id: string;
   initialMessages: Array<Message>;
-  selectedModelId: string;
+  selectedChatModel: string;
   selectedVisibilityType: VisibilityType;
   isReadonly: boolean;
   user: User | undefined;
@@ -45,11 +46,17 @@ export function Chat({
     reload,
   } = useChat({
     id,
-    body: { id, modelId: selectedModelId },
+    body: { id, selectedChatModel: selectedChatModel },
     initialMessages,
     experimental_throttle: 100,
+    sendExtraMessageFields: true,
+    generateId: generateUUID,
     onFinish: () => {
       mutate('/api/history');
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error('An error occured, please try again!');
     },
   });
 
@@ -66,7 +73,7 @@ export function Chat({
       <div className="flex flex-col min-w-0 h-dvh bg-background">
         <ChatHeader
           chatId={id}
-          selectedModelId={selectedModelId}
+          selectedModelId={selectedChatModel}
           selectedVisibilityType={selectedVisibilityType}
           isReadonly={isReadonly}
           user={user}
